@@ -1,0 +1,55 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 50px;
+}
+
+.current {
+  margin-bottom: 30px;
+}
+
+.btn__box {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+}
+
+.btn {
+  width: 150px;
+  height: 150px;
+  background-size: cover;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.rock {
+  background-image: url(../img/pngaaa.com-1751020.png);
+}
+
+.scisors {
+  background-image: url(../img/pngaaa.com-236537.png);
+}
+
+.paper {
+  background-image: url(../img/pngaaa.com-230488.png);
+}
+
+.score {
+}

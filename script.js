@@ -1,11 +1,25 @@
 "use strict";
 
-let v = 0;
-let c = 0;
-const btnEl = document.querySelector(".btn");
+let game;
+let v;
+let c;
 const titleEl = document.querySelector(".title");
+const curEl = document.querySelector(".current");
+const scoreEl = document.querySelector(".score");
+const btns = document.querySelectorAll(".btn");
+const btnRestart = document.querySelector(".restart");
 
-// Ход компьютера
+const init = function () {
+  game = true;
+  v = 0;
+  c = 0;
+  scoreEl.textContent = `You: ${v} - Computer: ${c}`;
+  document.querySelector("body").style.background = "blue";
+  titleEl.textContent = "PLAY";
+  curEl.textContent = "Choose";
+};
+init();
+
 const computerPlay = function () {
   let compChoice = Math.floor(Math.random() * 3) + 1;
   if (compChoice === 1) {
@@ -18,41 +32,43 @@ const computerPlay = function () {
   return compChoice;
 };
 
-// Мой ход
-const myPlay = function () {
-  let myChoice = prompt("Choose").toLowerCase();
-  return myChoice;
-};
-
-// 1 игра
 const play = function (me, comp) {
-  // Сравниваются результаты
   if (
     (me === "rock" && comp === "scisors") ||
     (me === "paper" && comp === "rock") ||
     (me === "scisors" && comp === "paper")
   ) {
-    console.log(`You Win! ${me} beats ${comp}`);
+    curEl.textContent = `You Win! ${me} beats ${comp}`;
     return v++;
   } else if (me === comp) {
-    console.log(`BOTH ${me} equal ${comp}`);
+    curEl.textContent = `BOTH ${me} equal ${comp}`;
   } else {
-    console.log(`You loose ${me} beats BY ${comp}`);
+    curEl.textContent = `You loose ${me} beats BY ${comp}`;
     return c++;
   }
 };
 
-const game = function () {
-  while (c < 2 && v < 2) {
-    play(myPlay(), computerPlay());
-    if (v >= 2) {
-      titleEl.textContent = "Vadik WIN";
-    } else if (c >= 2) {
-      titleEl.textContent = "Computer WIN";
-    }
-    console.log(`${v} ${c}`);
-  }
+const myPlay = function () {
+  btns.forEach((btn) =>
+    btn.addEventListener("click", function () {
+      if (game) {
+        const myChoice = btn.id;
+        //
+        play(myChoice, computerPlay());
+        scoreEl.textContent = `You: ${v} - Computer: ${c}`;
+        if (v >= 2) {
+          game = false;
+          titleEl.textContent = "Vadik WIN";
+          document.querySelector("body").style.background = "green";
+        } else if (c >= 2) {
+          game = false;
+          titleEl.textContent = "Computer WIN";
+          document.querySelector("body").style.background = "red";
+        }
+      }
+    })
+  );
 };
+myPlay();
 
-btnEl.addEventListener("click", game);
-// //////////
+btnRestart.addEventListener("click", init);

@@ -5,10 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ROCK SCISORS PAPER</title>
+    <link rel="stylesheet" href="css/style.css" />
     <script defer src="script.js"></script>
   </head>
   <body>
-    <h1 class="title">PLAY</h1>
-    <button class="btn">Press</button>
+    <div class="container">
+      <h1 class="title">PLAY</h1>
+      <h2 class="current">Choose</h2>
+      <div class="btn__box">
+        <button id="rock" class="btn rock"></button>
+        <button id="scisors" class="btn scisors"></button>
+        <button id="paper" class="btn paper"></button>
+      </div>
+      <h2 class="score">Score</h2>
+      <button class="restart">RESTART</button>
+    </div>
   </body>
 </html>
